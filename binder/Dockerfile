@@ -13,6 +13,8 @@ COPY --chown=jovyan:jovyan . ${HOME}
 
 USER ${NB_USER}
 
+RUN rm -r ${HOME}/binder;
+
 # Specify the default command to run
 ENV SHELL /bin/bash
 WORKDIR ${HOME}
