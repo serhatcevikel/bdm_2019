@@ -1,5 +1,6 @@
 # bash and sql sessions
-FROM serhatcevikel/bigdata2:bash_sql_01
+#FROM serhatcevikel/bigdata2:bash_sql_01
+FROM serhatcevikel/bigdata2:54817c4
 LABEL maintainer="serhatcevikel@yahoo.com"
  
 # environment variables
