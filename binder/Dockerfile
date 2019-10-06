@@ -1,6 +1,6 @@
 # bash and sql sessions
 #FROM serhatcevikel/bigdata2:bash_sql_01
-FROM serhatcevikel/bigdata2:bash_lean_20191006_01
+FROM serhatcevikel/bigdata2:bash_lean_20191006_02
 LABEL maintainer="serhatcevikel@yahoo.com"
  
 # environment variables
