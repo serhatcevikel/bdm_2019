@@ -14,7 +14,9 @@ COPY --chown=jovyan:jovyan . ${HOME}
 
 USER ${NB_USER}
 
-RUN rm -r ${HOME}/binder;
+RUN rm -r ${HOME}/binder; \
+    echo "[[ \$TERM != \"screen\" ]] && exec screen -q" >> ${HOME}/.bashrc;
+
 
 # Specify the default command to run
 ENV SHELL /usr/bin/bash
