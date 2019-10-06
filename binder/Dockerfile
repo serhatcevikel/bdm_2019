@@ -20,7 +20,7 @@ RUN \
         rm /usr/bin/bash; \
     fi; \
 
-    cp /bin/bash /usr/bin/bash;
+    cp /bin/bash /usr/bin/bash; \
 
     if [ -e /usr/bin/sh ]; \
     then \
