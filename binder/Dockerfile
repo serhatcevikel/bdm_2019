@@ -16,5 +16,5 @@ USER ${NB_USER}
 RUN rm -r ${HOME}/binder;
 
 # Specify the default command to run
-ENV SHELL /bin/bash
+ENV SHELL /usr/bin/bash
 WORKDIR ${HOME}
