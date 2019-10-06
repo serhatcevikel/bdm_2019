@@ -1,6 +1,6 @@
 # bash and sql sessions
 #FROM serhatcevikel/bigdata2:bash_sql_01
-FROM serhatcevikel/bigdata2:bash_sql_20191004_01
+FROM serhatcevikel/bigdata2:bash_lean_20191006_01
 LABEL maintainer="serhatcevikel@yahoo.com"
  
 # environment variables
@@ -17,5 +17,5 @@ USER ${NB_USER}
 RUN rm -r ${HOME}/binder;
 
 # Specify the default command to run
-ENV SHELL /bin/bash
+ENV SHELL /usr/bin/bash
 WORKDIR ${HOME}
