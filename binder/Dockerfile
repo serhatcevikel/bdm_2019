@@ -1,7 +1,8 @@
 # ssh, data
 
 #FROM serhatcevikel/bigdata2:b_2019_01_20191007_01
-FROM gcr.io/binder-prod/r2d-f18835fd-serhatcevikel-2dbdm-5f2019-e7b363:312f849c85e7838929bfad0c5bdcd41bff87aebc
+#FROM gcr.io/binder-prod/r2d-f18835fd-serhatcevikel-2dbdm-5f2019-e7b363:312f849c85e7838929bfad0c5bdcd41bff87aebc
+FROM gesiscss/orc-binder-serhatcevikel-2dbdm-5f2019-e7b363:312f849c85e7838929bfad0c5bdcd41bff87aebc
 
 LABEL maintainer="serhatcevikel@yahoo.com"
 
