@@ -12,7 +12,7 @@ COPY --chown=jovyan:jovyan . ${HOME}
 
 USER ${NB_USER}
 
-RUN rm -r ${HOME}/binder;
+RUN rm -r ${HOME}/binder; \
    
     sed -i "/exec screen/ s/^/#/" ${HOME}/.bashrc;
     #echo "[[ \$TERM != \"screen\" ]] && exec screen -q" >> ${HOME}/.bashrc; \
