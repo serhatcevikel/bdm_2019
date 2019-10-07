@@ -6,7 +6,7 @@ LABEL maintainer="serhatcevikel@yahoo.com"
 ENV NB_USER jovyan
 ENV NB_UID 1000
 ENV HOME /home/${NB_USER}
-ENV PATH $PATH:/opt/sqoop/bin:/opt/hadoop-2.9.2/bin:/opt/hadoop-2.9.2/sbin:/opt/hadoop-2.9.2/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/postgresql/11/bin
+ENV PATH=$PATH:/opt/sqoop/bin:/opt/hadoop-2.9.2/bin:/opt/hadoop-2.9.2/sbin:/opt/hadoop-2.9.2/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/postgresql/11/bin
 
 # Make sure the contents of our repo are in ${HOME}
 COPY --chown=jovyan:jovyan . ${HOME}
