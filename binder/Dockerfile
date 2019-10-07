@@ -1,5 +1,5 @@
 # bash, sql, nosql sessions and first hadoop session
-FROM serhatcevikel/bigdata2:hadoop_01_20191006_02
+FROM serhatcevikel/bigdata2:hadoop_01_20191006_01
 LABEL maintainer="serhatcevikel@yahoo.com"
  
 # environment variables
@@ -13,6 +13,10 @@ COPY --chown=jovyan:jovyan . ${HOME}
 USER ${NB_USER}
 
 RUN rm -r ${HOME}/binder;
+   
+    sed -i "/exec screen/ s/^/#/" ${HOME}/.bashrc;
+    #echo "[[ \$TERM != \"screen\" ]] && exec screen -q" >> ${HOME}/.bashrc; \
+
 
 # Specify the default command to run
 ENV SHELL /usr/bin/bash
