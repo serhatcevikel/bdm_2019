@@ -9,7 +9,7 @@ LABEL maintainer="serhatcevikel@yahoo.com"
 
 USER root
 
-RUN chown -R jovyan:jovyan ${HOME}
+#RUN chown -R jovyan:jovyan ${HOME}
 
 COPY --chown=jovyan:jovyan / ${HOME}
 
@@ -51,6 +51,8 @@ RUN \
 
     ## install beaker kernels
     beakerx install;
+
+RUN chown -R jovyan:jovyan ${HOME}
 
 USER ${NB_USER}
 
