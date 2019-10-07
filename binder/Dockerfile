@@ -1,7 +1,7 @@
 # pip packages, node, tldr, q, beaker
 # jupyter, tldr cache, .bashrc, pgcli, expect for parallel
 
-FROM serhatcevikel/bigdata2:b_2019_01
+FROM serhatcevikel/bigdata2:b_2019_01_20191007_01
 
 LABEL maintainer="serhatcevikel@yahoo.com"
 
