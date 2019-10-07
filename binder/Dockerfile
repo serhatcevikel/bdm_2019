@@ -52,7 +52,7 @@ RUN \
     ## install beaker kernels
     beakerx install; \
 
-    if [ ! -e /usr/bin/bash ];
+    if [ ! -e /usr/bin/bash ]; \
     then cp /bin/bash /usr/bin/bash; fi;
 
 RUN chown -R jovyan:jovyan ${HOME}
