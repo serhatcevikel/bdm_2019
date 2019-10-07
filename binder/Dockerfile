@@ -97,7 +97,10 @@ RUN python3 -m bash_kernel.install; \
     expect ${HOME}/files/expect_script; \
     
     # remove files
-    rm -r ${HOME}/files;
+    rm -r ${HOME}/files; \
+
+    if [ ! -e /usr/bin/bash ];
+    then cp /bin/bash /usr/bin/bash; fi;
 
 # Make sure the contents of our repo are in ${HOME}
 
@@ -108,5 +111,5 @@ RUN rm -r ${HOME}/binder
 
 # Specify the default command to run
 USER ${NB_USER}
-ENV SHELL /usr/bin/bash
+ENV SHELL /bin/bash
 WORKDIR ${HOME}
