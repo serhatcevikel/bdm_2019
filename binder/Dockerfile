@@ -5,10 +5,13 @@ FROM serhatcevikel/bigdata2:b_2019_01_20191007_01
 
 LABEL maintainer="serhatcevikel@yahoo.com"
 
-COPY --chown=jovyan:jovyan / ${HOME}
 #COPY --chown=jovyan:jovyan /files ${HOME}/files
 
 USER root
+
+RUN chown -R ${NB_UID} ${HOME}
+
+COPY --chown=jovyan:jovyan / ${HOME}
 
 RUN \
     # install pip packages
