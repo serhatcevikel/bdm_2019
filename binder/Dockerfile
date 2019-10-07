@@ -9,7 +9,7 @@ LABEL maintainer="serhatcevikel@yahoo.com"
 
 USER root
 
-RUN chown -R ${NB_UID} ${HOME}
+RUN chown -R jovyan:jovyan ${HOME}
 
 COPY --chown=jovyan:jovyan / ${HOME}
 
