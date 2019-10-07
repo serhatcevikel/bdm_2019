@@ -25,7 +25,7 @@ RUN \
 RUN \
     # quilt
     quilt install serhatcevikel/bdm_data; \
-    quilt export serhatcevikel/bdm_data $HOME/data; \
+    quilt export serhatcevikel/bdm_data $HOME/data;
 
 
 # Specify the default command to run
