@@ -1,110 +1,31 @@
-# pip packages, node, tldr, q, beaker
-# jupyter, tldr cache, .bashrc, pgcli, expect for parallel
+# ssh, data
 
-FROM serhatcevikel/bigdata2:b_2019_01_20191007_01
+#FROM serhatcevikel/bigdata2:b_2019_01_20191007_01
+FROM gcr.io/binder-prod/r2d-f18835fd-serhatcevikel-2dbdm-5f2019-e7b363:312f849c85e7838929bfad0c5bdcd41bff87aebc
 
 LABEL maintainer="serhatcevikel@yahoo.com"
 
-#COPY --chown=jovyan:jovyan /files ${HOME}/files
-
 USER root
 
-#RUN chown -R jovyan:jovyan ${HOME}
+# configure sshd
+RUN sed -i '/^#PubkeyAuthentication/ s/^#//' /etc/ssh/sshd_config; \
+    sed -i '/^#PermitRootLogin/ s/^#//' /etc/ssh/sshd_config; \
+    sed -i '/StrictHostKeyChecking/ s/^#//' /etc/ssh/ssh_config; \
+    sed -i '/StrictHostKeyChecking/ s/ask/no/' /etc/ssh/ssh_config;
 
-COPY --chown=jovyan:jovyan / ${HOME}
+USER ${NB_USER}
+
+# copy conf files, create ssh key, exract files
+RUN \
+    mkdir -p $HOME/.ssh; \
+    ssh-keygen -b 2048 -t rsa -f $HOME/.ssh/id_rsa -q -N ""; \
+    cp $HOME/.ssh/id_rsa.pub $HOME/.ssh/authorized_keys;
 
 RUN \
-    # install pip packages
-    pip3 install --no-cache \
-        bash_kernel \
-        beakerx \
-        imongo-kernel \
-        ipython_mongo \
-        ipython-sql \
-        jupyter_contrib_nbextensions \
-        jupyter-nbextensions-configurator \
-        nbpresent \
-        notebook \
-        pgcli \
-        pgspecial \
-        postgres_kernel \
-        py4j \
-        quilt==2.9.15 \
-        RISE \
-        sos \
-        sos-notebook; \
+    # quilt
+    quilt install serhatcevikel/bdm_data; \
+    quilt export serhatcevikel/bdm_data $HOME/data; \
 
-    # install node
-    curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && \
-        apt install -y nodejs build-essential; \
-
-    # tldr
-    npm install tldr -g; \
-    
-    # install q 
-    qdeblink=$(lynx -listonly -nonumbers -dump "https://github.com/harelba/q/releases" | grep -P "\.deb$" | head -1); \
-    qdebfile=${qdeblink##*/}; \
-
-    wget -P ${HOME} $qdeblink && \
-    dpkg -i ${HOME}/$qdebfile && \
-    rm ${HOME}/$qdebfile; \
-
-    ## install beaker kernels
-    beakerx install; \
-
-    if [ ! -e /usr/bin/bash ]; \
-    then cp /bin/bash /usr/bin/bash; fi;
-
-RUN chown -R jovyan:jovyan ${HOME}
-
-USER ${NB_USER}
-
-# nbpresent
-RUN python3 -m bash_kernel.install; \
-    python3 -m sos_notebook.install; \
-    jupyter contrib nbextension install --user; \
-    jupyter nbextensions_configurator enable --user; \
-    jupyter nbextension install nbpresent --py --overwrite --user; \
-    jupyter nbextension enable nbpresent --py --user; \
-    jupyter serverextension enable nbpresent --py --user; \
-    jupyter-nbextension enable codefolding/main --user; \
-    jupyter-nbextension install rise --py --user; \
-    jupyter-nbextension enable splitcell/splitcell --user; \
-    jupyter-nbextension enable hide_input/main --user; \
-    jupyter-nbextension enable nbextensions_configurator/tree_tab/main --user; \
-    jupyter-nbextension enable nbextensions_configurator/config_menu/main --user; \
-    jupyter-nbextension enable contrib_nbextensions_help_item/main  --user; \
-    jupyter-nbextension enable scroll_down/main --user; \
-    jupyter-nbextension enable toc2/main --user; \
-    jupyter-nbextension enable autoscroll/main  --user; \
-    jupyter-nbextension enable rubberband/main --user; \
-    jupyter-nbextension enable exercise2/main --user; \
-    cp $HOME/files/common.json $HOME/.jupyter/nbconfig/common.json; \
-
-    # update tldr cache
-    tldr -u; \
-    
-    # screenrc
-    printf "hardstatus on\nhardstatus alwayslastline\nhardstatus string \"%%w\"\n" >> ${HOME}/.screenrc; \
-    
-    # bashrc
-    echo "export LC_ALL=C.UTF-8" >> $HOME/.bashrc; \
-    echo "export LANG=C.UTF-8" >> $HOME/.bashrc; \
-    echo "export EDITOR=vim" >> $HOME/.bashrc; \
-
-    ## pgcli default options
-    mkdir -p $HOME/.config/pgcli; \
-    cp $HOME/files/pgcli_config $HOME/.config/pgcli/config; \
-
-    # run expect script for parallel
-    expect ${HOME}/files/expect_script; \
-    
-    # remove files
-    rm -r ${HOME}/files;
-
-USER ${NB_USER}
-
-RUN rm -r ${HOME}/binder
 
 # Specify the default command to run
 USER ${NB_USER}
