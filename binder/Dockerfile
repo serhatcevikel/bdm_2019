@@ -11,6 +11,11 @@ ENV PATH=$PATH:/opt/sqoop/bin:/opt/hadoop-2.9.2/bin:/opt/hadoop-2.9.2/sbin:/opt/
 # Make sure the contents of our repo are in ${HOME}
 COPY --chown=jovyan:jovyan . ${HOME}
 
+USER root
+
+RUN rm /etc/environment; \
+    touch /etc/environment;
+
 USER ${NB_USER}
 
 RUN rm -r ${HOME}/binder; \
