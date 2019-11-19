@@ -1,3 +1,4 @@
+                                 Table "public.crew_molten"
    Column   | Type | Collation | Nullable | Default | Storage  | Stats target | Description 
 ------------+------+-----------+----------+---------+----------+--------------+-------------
  tconst     | text |           | not null |         | extended |              | 
@@ -26,56 +27,56 @@ Indexes:
 Indexes:
     "tconst_pk_05" PRIMARY KEY, btree (nconst)
 
-       Index "public.tconst_pk"
- Column | Type | Definition | Storage  
---------+------+------------+----------
- tconst | text | tconst     | extended
+                  Index "public.tconst_pk"
+ Column | Type | Key? | Definition | Storage  | Stats target 
+--------+------+------+------------+----------+--------------
+ tconst | text | yes  | tconst     | extended | 
 primary key, btree, for table "public.title_basics"
 
-      Index "public.tconst_pk_02"
- Column | Type | Definition | Storage  
---------+------+------------+----------
- tconst | text | tconst     | extended
+                 Index "public.tconst_pk_02"
+ Column | Type | Key? | Definition | Storage  | Stats target 
+--------+------+------+------------+----------+--------------
+ tconst | text | yes  | tconst     | extended | 
 primary key, btree, for table "public.title_crew"
 
-           Index "public.tconst_pk_03"
-    Column     | Type |  Definition   | Storage  
----------------+------+---------------+----------
- tconst        | text | tconst        | extended
- principalcast | text | principalcast | extended
+                      Index "public.tconst_pk_03"
+    Column     | Type | Key? |  Definition   | Storage  | Stats target 
+---------------+------+------+---------------+----------+--------------
+ tconst        | text | yes  | tconst        | extended | 
+ principalcast | text | yes  | principalcast | extended | 
 primary key, btree, for table "public.title_principals_melt"
 
-      Index "public.tconst_pk_04"
- Column | Type | Definition | Storage  
---------+------+------------+----------
- tconst | text | tconst     | extended
+                 Index "public.tconst_pk_04"
+ Column | Type | Key? | Definition | Storage  | Stats target 
+--------+------+------+------------+----------+--------------
+ tconst | text | yes  | tconst     | extended | 
 primary key, btree, for table "public.title_ratings"
 
-      Index "public.tconst_pk_05"
- Column | Type | Definition | Storage  
---------+------+------------+----------
- nconst | text | nconst     | extended
+                 Index "public.tconst_pk_05"
+ Column | Type | Key? | Definition | Storage  | Stats target 
+--------+------+------+------------+----------+--------------
+ nconst | text | yes  | nconst     | extended | 
 primary key, btree, for table "public.name_basics"
 
-      Index "public.tconst_pk_06"
- Column | Type | Definition | Storage  
---------+------+------------+----------
- tconst | text | tconst     | extended
+                 Index "public.tconst_pk_06"
+ Column | Type | Key? | Definition | Storage  | Stats target 
+--------+------+------+------------+----------+--------------
+ tconst | text | yes  | tconst     | extended | 
 primary key, btree, for table "public.title_episode"
 
-      Index "public.tconst_pk_07"
- Column | Type | Definition | Storage  
---------+------+------------+----------
- tconst | text | tconst     | extended
- genres | text | genres     | extended
+                 Index "public.tconst_pk_07"
+ Column | Type | Key? | Definition | Storage  | Stats target 
+--------+------+------+------------+----------+--------------
+ tconst | text | yes  | tconst     | extended | 
+ genres | text | yes  | genres     | extended | 
 primary key, btree, for table "public.genres_molten"
 
-        Index "public.tconst_pk_08"
-   Column   | Type | Definition | Storage  
-------------+------+------------+----------
- tconst     | text | tconst     | extended
- profession | text | profession | extended
- nconst     | text | nconst     | extended
+                   Index "public.tconst_pk_08"
+   Column   | Type | Key? | Definition | Storage  | Stats target 
+------------+------+------+------------+----------+--------------
+ tconst     | text | yes  | tconst     | extended | 
+ profession | text | yes  | profession | extended | 
+ nconst     | text | yes  | nconst     | extended | 
 primary key, btree, for table "public.crew_molten"
 
                                     Table "public.title_basics"
@@ -128,3 +129,4 @@ Indexes:
  numvotes      | integer |           |          |         | plain    |              | 
 Indexes:
     "tconst_pk_04" PRIMARY KEY, btree (tconst)
+
