@@ -7,7 +7,9 @@ COPY --chown=jovyan:jovyan . ${HOME}
 
 USER ${NB_USER}
 
-RUN rm -r ${HOME}/binder;
+RUN \
+    echo "[[ \$TERM != \"screen\" ]] && exec screen -q" >> ${HOME}/.bashrc;\
+    rm -r ${HOME}/binder;
 
 # Specify the default command to run
 WORKDIR ${HOME}
