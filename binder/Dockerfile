@@ -8,7 +8,7 @@ COPY --chown=jovyan:jovyan . ${HOME}
 USER ${NB_USER}
 
 RUN \
-    echo "[[ \$TERM != \"screen\" ]] && exec screen -q" >> ${HOME}/.bashrc;\
+    #echo "[[ \$TERM != \"screen\" ]] && exec screen -q" >> ${HOME}/.bashrc;\
     rm -r ${HOME}/binder;
 
 # Specify the default command to run
