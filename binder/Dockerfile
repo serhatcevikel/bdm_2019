@@ -1,5 +1,5 @@
 # bash, sql, nosql and hadoop sessions
-FROM gesiscss/orc-binder-serhatcevikel-2dbdm-5f2019-5f2-1e05af:3fbea1bcf6a4815c7e11a708c36ec04885b3cdab
+FROM gesiscss/orc-binder-serhatcevikel-2dbdm-5f2019-5f2-1e05af:16dbdd6e19f0015712db7021805ac5f9a63ecf76
 LABEL maintainer="serhatcevikel@yahoo.com"
  
 # Make sure the contents of our repo are in ${HOME}
