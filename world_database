@@ -1,0 +1,71 @@
+                                         Table "public.city"
+   Column    |     Type     | Collation | Nullable | Default | Storage  | Stats target | Description 
+-------------+--------------+-----------+----------+---------+----------+--------------+-------------
+ id          | integer      |           | not null |         | plain    |              | 
+ name        | text         |           | not null |         | extended |              | 
+ countrycode | character(3) |           | not null |         | extended |              | 
+ district    | text         |           | not null |         | extended |              | 
+ population  | integer      |           | not null |         | plain    |              | 
+Indexes:
+    "city_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "country" CONSTRAINT "country_capital_fkey" FOREIGN KEY (capital) REFERENCES city(id)
+
+                   Index "public.city_pkey"
+ Column |  Type   | Key? | Definition | Storage | Stats target 
+--------+---------+------+------------+---------+--------------
+ id     | integer | yes  | id         | plain   | 
+primary key, btree, for table "public.city"
+
+                                         Table "public.country"
+     Column     |     Type      | Collation | Nullable | Default | Storage  | Stats target | Description 
+----------------+---------------+-----------+----------+---------+----------+--------------+-------------
+ code           | character(3)  |           | not null |         | extended |              | 
+ name           | text          |           | not null |         | extended |              | 
+ continent      | text          |           | not null |         | extended |              | 
+ region         | text          |           | not null |         | extended |              | 
+ surfacearea    | real          |           | not null |         | plain    |              | 
+ indepyear      | smallint      |           |          |         | plain    |              | 
+ population     | integer       |           | not null |         | plain    |              | 
+ lifeexpectancy | real          |           |          |         | plain    |              | 
+ gnp            | numeric(10,2) |           |          |         | main     |              | 
+ gnpold         | numeric(10,2) |           |          |         | main     |              | 
+ localname      | text          |           | not null |         | extended |              | 
+ governmentform | text          |           | not null |         | extended |              | 
+ headofstate    | text          |           |          |         | extended |              | 
+ capital        | integer       |           |          |         | plain    |              | 
+ code2          | character(2)  |           | not null |         | extended |              | 
+Indexes:
+    "country_pkey" PRIMARY KEY, btree (code)
+Check constraints:
+    "country_continent_check" CHECK (continent = 'Asia'::text OR continent = 'Europe'::text OR continent = 'North America'::text OR continent = 'Africa'::text OR continent = 'Oceania'::text OR continent = 'Antarctica'::text OR continent = 'South America'::text)
+Foreign-key constraints:
+    "country_capital_fkey" FOREIGN KEY (capital) REFERENCES city(id)
+Referenced by:
+    TABLE "countrylanguage" CONSTRAINT "countrylanguage_countrycode_fkey" FOREIGN KEY (countrycode) REFERENCES country(code)
+
+                     Index "public.country_pkey"
+ Column |     Type     | Key? | Definition | Storage  | Stats target 
+--------+--------------+------+------------+----------+--------------
+ code   | character(3) | yes  | code       | extended | 
+primary key, btree, for table "public.country"
+
+                                   Table "public.countrylanguage"
+   Column    |     Type     | Collation | Nullable | Default | Storage  | Stats target | Description 
+-------------+--------------+-----------+----------+---------+----------+--------------+-------------
+ countrycode | character(3) |           | not null |         | extended |              | 
+ language    | text         |           | not null |         | extended |              | 
+ isofficial  | boolean      |           | not null |         | plain    |              | 
+ percentage  | real         |           | not null |         | plain    |              | 
+Indexes:
+    "countrylanguage_pkey" PRIMARY KEY, btree (countrycode, language)
+Foreign-key constraints:
+    "countrylanguage_countrycode_fkey" FOREIGN KEY (countrycode) REFERENCES country(code)
+
+                    Index "public.countrylanguage_pkey"
+   Column    |     Type     | Key? | Definition  | Storage  | Stats target 
+-------------+--------------+------+-------------+----------+--------------
+ countrycode | character(3) | yes  | countrycode | extended | 
+ language    | text         | yes  | language    | extended | 
+primary key, btree, for table "public.countrylanguage"
+
