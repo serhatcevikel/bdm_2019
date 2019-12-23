@@ -5,7 +5,6 @@ LABEL maintainer="serhatcevikel@yahoo.com"
 # Make sure the contents of our repo are in ${HOME}
 COPY --chown=jovyan:jovyan . ${HOME}
 
-USER ${NB_USER}
 
 USER root
 RUN \
