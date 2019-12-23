@@ -16,6 +16,7 @@ RUN \
     sudo -H -u ${NB_USER} bash -c "export JAVA_HOME=/usr/lib/jvm/default-java; \
     ${HADOOP_HOME}/sbin/start-dfs.sh && \
     ${HADOOP_HOME}/sbin/start-yarn.sh && \
+    ${HADOOP_HOME}/bin/hdfs dfsadmin -safemode leave && \
     ${HIVE_HOME}/bin/hive --service metastore & \
     sleep 20;\
     tables=\$(psql -U postgres -d world -t --pset=\"border=0\" -c \"\dt\" | \
