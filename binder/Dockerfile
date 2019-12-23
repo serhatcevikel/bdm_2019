@@ -21,7 +21,7 @@ RUN \
     awk -F \" \" '{ print $2 }') && \
     ${HIVE_HOME}/bin/hive -e \"create database world2\" && \
     echo \"\$tables\" | while read l;
-    do
+    do \
     ${SQOOP_HOME}/bin/sqoop import \
     --connect jdbc:postgresql://localhost:5432/world \
     --username postgres \
