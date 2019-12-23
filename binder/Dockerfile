@@ -17,7 +17,7 @@ RUN \
     ${HADOOP_HOME}/sbin/start-dfs.sh && \
     ${HADOOP_HOME}/sbin/start-yarn.sh && \
     ${HIVE_HOME}/bin/hive --service metastore & \
-    sleep 20;
+    sleep 20;\
     tables=\$(psql -U postgres -d world -t --pset=\"border=0\" -c \"\dt\" | \
     awk -F \" \" '{ print $2 }') && \
     ${HIVE_HOME}/bin/hive -e \"create database world2\" && \
