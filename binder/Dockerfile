@@ -36,10 +36,11 @@ COPY --chown=jovyan:jovyan . ${HOME}
 #    service postgresql stop;\
 #    service ssh stop;
 
+USER ${NB_USER}
+
 RUN \
     #echo "[[ \$TERM != \"screen\" ]] && exec screen -q" >> ${HOME}/.bashrc;\
     rm -r ${HOME}/binder;
-
 
 # Specify the default command to run
 WORKDIR ${HOME}
