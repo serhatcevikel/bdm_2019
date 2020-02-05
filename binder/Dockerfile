@@ -1,6 +1,11 @@
 # bash, sql, nosql and hadoop sessions
 FROM gesiscss/binder-serhatcevikel-2dbdm-5f2019-5f2-1e05af:7a1896f11084edaff947e2b9d49d07f11b82b389
 LABEL maintainer="serhatcevikel@yahoo.com"
+
+ENV datadir ${HOME}/data
+ENV imdbdir ${datadir}/imdb
+ENV comtrade ${datadir}/comtrade_s1
+ENV hemlak ${datadir}/he_sisli
  
 # Make sure the contents of our repo are in ${HOME}
 COPY --chown=jovyan:jovyan . ${HOME}
