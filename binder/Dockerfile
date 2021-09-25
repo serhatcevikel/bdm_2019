@@ -51,12 +51,6 @@ RUN \
 USER ${NB_USER}
 
 RUN \
-   jupyter labextension install \
-        @jupyterlab/toc \
-        transient-display-data \
-        jupyterlab-sos;
-
-RUN \
     #echo "[[ \$TERM != \"screen\" ]] && exec screen -q" >> ${HOME}/.bashrc;\
     rm -r ${HOME}/binder;
 
