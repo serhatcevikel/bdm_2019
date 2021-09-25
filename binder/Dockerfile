@@ -1,17 +1,19 @@
 # bash, sql, nosql and hadoop sessions
-FROM gesiscss/binder-serhatcevikel-2dbdm-5f2019-5f2-1e05af:136a2b6b771949610f8b7e705fcc34c01f4afa97
+#FROM gesiscss/binder-serhatcevikel-2dbdm-5f2019-5f2-1e05af:136a2b6b771949610f8b7e705fcc34c01f4afa97
+#FROM gcr.io/binderhub-288415/r2d-staging-g5b5b759-serhatcevikel-2dbdm-5f2019-e7b363:1239175be24a02ff0e1bcd30f865011dc1fca7d4
+FROM gesiscss/binder-serhatcevikel-2dbdm-5f2019-e7b363:1239175be24a02ff0e1bcd30f865011dc1fca7d4
 LABEL maintainer="serhatcevikel@yahoo.com"
 
-ENV datadir ${HOME}/data
-ENV imdbdir ${datadir}/imdb
-ENV comtrade ${datadir}/comtrade_s1
-ENV hemlak ${datadir}/he_sisli
- 
 # Make sure the contents of our repo are in ${HOME}
 COPY --chown=jovyan:jovyan . ${HOME}
 
-#USER root
-#RUN \
+USER root
+RUN \
+    # install pip packages
+    pip3 install --no-cache \
+        jupyterlab ;
+#       jupyterlab-sos;
+
 #    # start ssh
 #    service ssh start;\
 #    service postgresql start;\
@@ -42,6 +44,12 @@ COPY --chown=jovyan:jovyan . ${HOME}
 #    service ssh stop;
 
 USER ${NB_USER}
+
+RUN \
+   jupyter labextension install \
+        @jupyterlab/toc \
+        transient-display-data \
+        jupyterlab-sos;
 
 RUN \
     #echo "[[ \$TERM != \"screen\" ]] && exec screen -q" >> ${HOME}/.bashrc;\
