@@ -11,7 +11,12 @@ USER root
 RUN \
     # install pip packages
     pip3 install --no-cache \
-        jupyterlab ;
+        jupyterlab; \
+    \   
+    jupyter labextension install \
+        @jupyterlab/toc \
+        transient-display-data \
+        jupyterlab-sos;
 #       jupyterlab-sos;
 
 #    # start ssh
