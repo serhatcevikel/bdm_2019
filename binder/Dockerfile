@@ -10,11 +10,14 @@ ENV hemlak ${datadir}/he_sisli
 # Make sure the contents of our repo are in ${HOME}
 COPY --chown=jovyan:jovyan . ${HOME}
 
+USER ${ROOT}
+RUN \
+    chown -R ${NB_USER}:${NB_USER};
+
 USER ${NB_USER}
 
 RUN \
     #echo "[[ \$TERM != \"screen\" ]] && exec screen -q" >> ${HOME}/.bashrc;\
-    chown -R ${NB_USER}:${NB_USER} / && \
     rm -r ${HOME}/binder;
 
 # Specify the default command to run
