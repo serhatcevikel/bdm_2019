@@ -12,7 +12,7 @@ COPY --chown=jovyan:jovyan . ${HOME}
 
 USER ${ROOT}
 RUN \
-    chown -R ${NB_USER}:${NB_USER};
+    chown -R ${NB_USER}:${NB_USER} /;
 
 USER ${NB_USER}
 
