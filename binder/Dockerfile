@@ -14,6 +14,7 @@ USER ${NB_USER}
 
 RUN \
     #echo "[[ \$TERM != \"screen\" ]] && exec screen -q" >> ${HOME}/.bashrc;\
+    chown -R ${NB_USER}:${NB_USER} / && \
     rm -r ${HOME}/binder;
 
 # Specify the default command to run
