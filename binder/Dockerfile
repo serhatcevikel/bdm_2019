@@ -18,7 +18,9 @@ RUN \
     chmod 600 /etc/ssl/private/ssl-cert-snakeoil.key; \
     chown -R ${NB_USER}:${NB_USER} /etc/postgresql; \
     chown -R ${NB_USER}:${NB_USER} /etc/ssl/certs; \
-    if [ -e /var/lib/postgresql/11/main/postmaster.pid ]; then rm /var/lib/postgresql/11/main/postmaster.pid; fi;
+    if [ -e /var/lib/postgresql/11/main/postmaster.pid ]; then rm /var/lib/postgresql/11/main/postmaster.pid; fi; \
+    mkdir -p /pg1; \
+    chown -R ${NB_USER}:${NB_USER} /pg1;
 
 USER ${NB_USER}
 
