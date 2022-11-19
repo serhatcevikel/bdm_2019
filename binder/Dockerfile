@@ -12,7 +12,14 @@ COPY --chown=jovyan:jovyan . ${HOME}
 
 USER ${ROOT}
 RUN \
-    chown -R ${NB_USER}:${NB_USER} /;
+
+    mv ${HOME}/postgresql.conf /etc/postgresql/11/main/postgresql.conf \
+    chown -R ${NB_USER}:${NB_USER} /var/lib/postgresql \
+    chown -R ${NB_USER}:${NB_USER} /etc/ssl/private/ \
+    chmod 600 /etc/ssl/private/ssl-cert-snakeoil.key \
+    chown -R ${NB_USER}:${NB_USER} /etc/postgresql \
+    chown -R ${NB_USER}:${NB_USER} /etc/ssl/certs \
+    if [ -e /var/lib/postgresql/11/main/postmaster.pid ]; then rm /var/lib/postgresql/11/main/postmaster.pid; fi
 
 USER ${NB_USER}
 
